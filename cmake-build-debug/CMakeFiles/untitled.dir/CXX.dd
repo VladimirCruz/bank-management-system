@@ -1,0 +1,7 @@
+ninja_dyndep_version = 1.0
+build CMakeFiles/untitled.dir/main.cpp.obj: dyndep
+
+build CMakeFiles/untitled.dir/bank.cpp.obj: dyndep
+
+build CMakeFiles/untitled.dir/classes.cpp.obj: dyndep
+

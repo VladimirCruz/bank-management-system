@@ -1,0 +1,37 @@
+{
+	"bmi-installation" : null,
+	"compiler-frontend-variant" : "GNU",
+	"compiler-id" : "GNU",
+	"compiler-simulate-id" : "",
+	"config" : "Debug",
+	"cxx-modules" : {},
+	"database-info" : null,
+	"dir-cur-bld" : "C:/Users/thewa/CLionProjects/Bank Management System/cmake-build-debug",
+	"dir-cur-src" : "C:/Users/thewa/CLionProjects/Bank Management System",
+	"dir-top-bld" : "C:/Users/thewa/CLionProjects/Bank Management System/cmake-build-debug",
+	"dir-top-src" : "C:/Users/thewa/CLionProjects/Bank Management System",
+	"exports" : [],
+	"forward-modules-from-target-dirs" : [],
+	"include-dirs" : [],
+	"language" : "CXX",
+	"linked-target-dirs" : [],
+	"module-dir" : "C:/Users/thewa/CLionProjects/Bank Management System/cmake-build-debug/CMakeFiles/untitled.dir",
+	"sources" : 
+	{
+		"CMakeFiles/untitled.dir/bank.cpp.obj" : 
+		{
+			"language" : "CXX",
+			"source" : "C:/Users/thewa/CLionProjects/Bank Management System/bank.cpp"
+		},
+		"CMakeFiles/untitled.dir/classes.cpp.obj" : 
+		{
+			"language" : "CXX",
+			"source" : "C:/Users/thewa/CLionProjects/Bank Management System/classes.cpp"
+		},
+		"CMakeFiles/untitled.dir/main.cpp.obj" : 
+		{
+			"language" : "CXX",
+			"source" : "C:/Users/thewa/CLionProjects/Bank Management System/main.cpp"
+		}
+	}
+}
