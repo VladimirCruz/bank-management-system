@@ -59607,21 +59607,25 @@ class maxHeap {
 
     private:
     vector<pair<double, int>> items;
+    unordered_map<int, int> idToIndex;
 
 
 
 
-    void heapifyUp();
+    void heapifyUp(int i);
     void heapifyDown();
     int parent(int i) { return (i - 1) / 2; }
     int left(int i) { return (2 * i) + 1; }
     int right(int i) { return (2 * i) + 2; }
+
+    void swapAndUpdate(int a, int b);
 
     public:
 
 
     void insert(double bal, int id);
     void extractMax();
+    void updateKey(int id, double newBalance);
     pair<double, int> viewMax() const;
 };
 
@@ -59629,21 +59633,25 @@ class minHeap {
 
     private:
     vector<pair<double, int>> items;
+    unordered_map<int, int> idToIndex;
 
 
 
 
-    void heapifyUp();
+    void heapifyUp(int i);
     void heapifyDown();
     int parent(int i) { return (i - 1) / 2; }
     int left(int i) { return (2 * i) + 1; }
     int right(int i) { return (2 * i) + 2; }
+
+    void swapAndUpdate(int a, int b);
 
     public:
 
 
     void insert(double bal, int id);
     void extractMin();
+    void updateKey(int id, double newBalance);
     pair<double, int> viewMin() const;
 
 };
@@ -59660,10 +59668,10 @@ extern maxHeap maxH;
 void error();
 
 
+
+
+
 void menu();
-
-
-void handleChoice(int c);
 
 
 void accountCreate();
@@ -59672,7 +59680,7 @@ void accountCreate();
 void accountDelete();
 
 
-int deposit();
+void deposit();
 
 
 int withdrawal();
@@ -59689,9 +59697,7 @@ void accountReport();
 void accountLookup();
 
 
-
-
-int mergeSort();
+void handleChoice(int c);
 # 9 "C:/Users/thewa/CLionProjects/Bank Management System/main.cpp" 2
 
 using namespace std;

@@ -11,61 +11,11 @@ maxHeap maxH;
 //User functions
 void error();
 
-void menu() {
-    cout << "1. Create Account" << endl;
-    cout << "2. Delete Account" << endl;
-    cout << "3. Deposit" << endl;
-    cout << "4. Withdraw" << endl;
-    cout << "5. Transfer Money" << endl;
-    cout << "6. Account Lookup" << endl;
-    cout << "7. Account with Least Money using minHeap" << endl;
-    cout << "8. Account with Most Money using maxHeap" << endl;
-    cout << "9. Top Accounts with Most Money" << endl;
-    cout << "10. Exit System" << endl;
-}
-
-void handleChoice(int c) { //, unordered_map<double, Account>& accounts, minHeap& minH, maxHeap& maxH
-    switch (c) {
-        case 1: {
-            accountCreate();
-            break;
-        }
-        case 2: {
-            cout << "Deleted Account" << endl;
-            break;
-        }
-        case 6: {
-            accountLookup();
-            break;
-        }
-        case 7: {
-            auto [minBal, minID] = minH.viewMin();
-            Account acct = accounts[minID];
-
-            cout << "Account with least money:" << endl;
-            cout << "Account ID: " << acct.getID() << endl;
-            cout << "Balance: $" << minBal << endl << endl;
-            break;
-        }
-        case 8: {
-            auto [maxBal, maxID] = maxH.viewMax();
-            Account acct = accounts[maxID];
-
-            cout << "Account with most money:" << endl;
-            cout << "Account ID: " << acct.getID() << endl;
-            cout << "Balance: $" << maxBal << endl << endl;
-            break;
-        }
-        case 10: {
-            return;
-        }
-
-        default: {
-            cout << "\nERROR: Choose one of the options.\n\n" << endl;
-        }
-
-        }
-    }
+// void updateKey(int accountID, int newBalance) {
+//     int i = idToIndex[accountID];
+//     items[i].first = newBalance;
+//
+// }
 
 void accountCreate() {
     string name;
@@ -117,9 +67,7 @@ void accountDelete() {
 }
 */
 
-
-
-void deposit(int accountID, int depositAmount) {
+void deposit(int accountID, double depositAmount) {
 
     auto it = accounts.find(accountID);
     if(it == accounts.end()) {
@@ -127,7 +75,7 @@ void deposit(int accountID, int depositAmount) {
         return;
     }
 
-    if(amount <= 0) {
+    if(depositAmount <= 0) {
         cout << "Invalid amount." << endl;
         return;
     }
@@ -135,20 +83,21 @@ void deposit(int accountID, int depositAmount) {
     Account& acct = it->second; //we want iterator to point to balance amount
     double oldBalance = acct.getBalance();
     double newBalance = oldBalance + depositAmount;
-    //Update minHeap and maxHeap
 
+    //updateKey updates the balances so that minHeap and maxHeap are accurate
+    maxH.updateKey(accountID, newBalance);
+    minH.updateKey(accountID, newBalance);
 
     time_t now = time(nullptr);
 
     cout << "A deposit was made to your account." << ctime(&now) << endl;
-    cout << "Your current balance is: $" << balance << endl;
-
+    cout << "Your current balance is: $" << newBalance << endl;
 }
 
 int withdrawal();
 
 /*
-int moneyTransfer(int accountNum, float amount) { //float amount
+int moneyTransfer(int accountNum, double amount) { //double amount
 
     //Takes in value, checks to see if account exists or not
     //Should just be a hashmap
@@ -167,14 +116,14 @@ void accountReport();
 
 //Admin tools
 void accountLookup() {
-    int id;
+    int accountID;
     cout << "Account ID: ";
-    cin >> id;
+    cin >> accountID;
 
     double bal = 0; //accounts.find()
 
-    if(accounts.find(id) != accounts.end()) {
-        const Account& acct = accounts.find(id)->second;
+    if(accounts.find(accountID) != accounts.end()) {
+        const Account& acct = accounts.find(accountID)->second;
 
         cout << "\nAccount Information: " << endl;
         cout << "ID: " << acct.getID() << endl;
@@ -188,6 +137,69 @@ void accountLookup() {
     }
 }
 
+void menu() {
+    cout << "1. Create Account" << endl;
+    cout << "2. Delete Account" << endl;
+    cout << "3. Deposit" << endl;
+    cout << "4. Withdraw" << endl;
+    cout << "5. Transfer Money" << endl;
+    cout << "6. Account Lookup" << endl;
+    cout << "7. Account with Least Money using minHeap" << endl;
+    cout << "8. Account with Most Money using maxHeap" << endl;
+    cout << "9. Top Accounts with Most Money" << endl;
+    cout << "10. Exit System" << endl;
+}
 
-//Functions for menus
-int mergeSort();
+void handleChoice(int c) { //, unordered_map<double, Account>& accounts, minHeap& minH, maxHeap& maxH
+    switch (c) {
+        case 1: {
+            accountCreate();
+            break;
+        }
+        case 2: {
+            cout << "Deleted Account" << endl;
+            break;
+        }
+        case 3: { //deposit
+            int accountID;
+            int depositAmount;
+            cout << "Enter id: " << endl;
+            cin >> accountID;
+
+            cout << "Enter deposit amount: " << endl;
+            cin >> depositAmount;
+
+            deposit(accountID, depositAmount);
+        }
+        case 6: {
+            accountLookup();
+            break;
+        }
+        case 7: {
+            auto [minBal, minID] = minH.viewMin();
+            Account acct = accounts[minID];
+
+            cout << "Account with least money:" << endl;
+            cout << "Account ID: " << acct.getID() << endl;
+            cout << "Balance: $" << minBal << endl << endl;
+            break;
+        }
+        case 8: {
+            auto [maxBal, maxID] = maxH.viewMax();
+            Account acct = accounts[maxID];
+
+            cout << "Account with most money:" << endl;
+            cout << "Account ID: " << acct.getID() << endl;
+            cout << "Balance: $" << maxBal << endl << endl;
+            break;
+        }
+        case 10: {
+            return;
+        }
+
+        default: {
+            cout << "\nERROR: Choose one of the options.\n\n" << endl;
+        }
+
+    }
+}

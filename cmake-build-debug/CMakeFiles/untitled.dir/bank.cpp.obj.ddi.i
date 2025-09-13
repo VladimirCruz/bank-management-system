@@ -53539,21 +53539,25 @@ class maxHeap {
 
     private:
     vector<pair<double, int>> items;
+    unordered_map<int, int> idToIndex;
 
 
 
 
-    void heapifyUp();
+    void heapifyUp(int i);
     void heapifyDown();
     int parent(int i) { return (i - 1) / 2; }
     int left(int i) { return (2 * i) + 1; }
     int right(int i) { return (2 * i) + 2; }
+
+    void swapAndUpdate(int a, int b);
 
     public:
 
 
     void insert(double bal, int id);
     void extractMax();
+    void updateKey(int id, double newBalance);
     pair<double, int> viewMax() const;
 };
 
@@ -53561,21 +53565,25 @@ class minHeap {
 
     private:
     vector<pair<double, int>> items;
+    unordered_map<int, int> idToIndex;
 
 
 
 
-    void heapifyUp();
+    void heapifyUp(int i);
     void heapifyDown();
     int parent(int i) { return (i - 1) / 2; }
     int left(int i) { return (2 * i) + 1; }
     int right(int i) { return (2 * i) + 2; }
+
+    void swapAndUpdate(int a, int b);
 
     public:
 
 
     void insert(double bal, int id);
     void extractMin();
+    void updateKey(int id, double newBalance);
     pair<double, int> viewMin() const;
 
 };
@@ -53591,10 +53599,10 @@ extern maxHeap maxH;
 void error();
 
 
+
+
+
 void menu();
-
-
-void handleChoice(int c);
 
 
 void accountCreate();
@@ -53603,7 +53611,7 @@ void accountCreate();
 void accountDelete();
 
 
-int deposit();
+void deposit();
 
 
 int withdrawal();
@@ -53620,9 +53628,7 @@ void accountReport();
 void accountLookup();
 
 
-
-
-int mergeSort();
+void handleChoice(int c);
 # 5 "C:/Users/thewa/CLionProjects/Bank Management System/bank.cpp" 2
 
 
@@ -53633,61 +53639,11 @@ maxHeap maxH;
 
 void error();
 
-void menu() {
-    cout << "1. Create Account" << endl;
-    cout << "2. Delete Account" << endl;
-    cout << "3. Deposit" << endl;
-    cout << "4. Withdraw" << endl;
-    cout << "5. Transfer Money" << endl;
-    cout << "6. Account Lookup" << endl;
-    cout << "7. Account with Least Money using minHeap" << endl;
-    cout << "8. Account with Most Money using maxHeap" << endl;
-    cout << "9. Top Accounts with Most Money" << endl;
-    cout << "10. Exit System" << endl;
-}
 
-void handleChoice(int c) {
-    switch (c) {
-        case 1: {
-            accountCreate();
-            break;
-        }
-        case 2: {
-            cout << "Deleted Account" << endl;
-            break;
-        }
-        case 6: {
-            accountLookup();
-            break;
-        }
-        case 7: {
-            auto [minBal, minID] = minH.viewMin();
-            Account acct = accounts[minID];
 
-            cout << "Account with least money:" << endl;
-            cout << "Account ID: " << acct.getID() << endl;
-            cout << "Balance: $" << minBal << endl << endl;
-            break;
-        }
-        case 8: {
-            auto [maxBal, maxID] = maxH.viewMax();
-            Account acct = accounts[maxID];
 
-            cout << "Account with most money:" << endl;
-            cout << "Account ID: " << acct.getID() << endl;
-            cout << "Balance: $" << maxBal << endl << endl;
-            break;
-        }
-        case 10: {
-            return;
-        }
 
-        default: {
-            cout << "\nERROR: Choose one of the options.\n\n" << endl;
-        }
 
-        }
-    }
 
 void accountCreate() {
     string name;
@@ -53721,25 +53677,50 @@ void accountCreate() {
     cout << "\nCreated Account:" << endl;
     cout << ctime(&now) << endl;
 }
-# 120 "C:/Users/thewa/CLionProjects/Bank Management System/bank.cpp"
-int deposit();
+# 70 "C:/Users/thewa/CLionProjects/Bank Management System/bank.cpp"
+void deposit(int accountID, double depositAmount) {
+
+    auto it = accounts.find(accountID);
+    if(it == accounts.end()) {
+        cout << "Account was not found." << endl;
+        return;
+    }
+
+    if(depositAmount <= 0) {
+        cout << "Invalid amount." << endl;
+        return;
+    }
+
+    Account& acct = it->second;
+    double oldBalance = acct.getBalance();
+    double newBalance = oldBalance + depositAmount;
+
+
+    maxH.updateKey(accountID, newBalance);
+    minH.updateKey(accountID, newBalance);
+
+    time_t now = time(nullptr);
+
+    cout << "A deposit was made to your account." << ctime(&now) << endl;
+    cout << "Your current balance is: $" << newBalance << endl;
+}
 
 int withdrawal();
-# 138 "C:/Users/thewa/CLionProjects/Bank Management System/bank.cpp"
+# 113 "C:/Users/thewa/CLionProjects/Bank Management System/bank.cpp"
 void accountReport();
 
 
 
 
 void accountLookup() {
-    int id;
+    int accountID;
     cout << "Account ID: ";
-    cin >> id;
+    cin >> accountID;
 
     double bal = 0;
 
-    if(accounts.find(id) != accounts.end()) {
-        const Account& acct = accounts.find(id)->second;
+    if(accounts.find(accountID) != accounts.end()) {
+        const Account& acct = accounts.find(accountID)->second;
 
         cout << "\nAccount Information: " << endl;
         cout << "ID: " << acct.getID() << endl;
@@ -53753,6 +53734,69 @@ void accountLookup() {
     }
 }
 
+void menu() {
+    cout << "1. Create Account" << endl;
+    cout << "2. Delete Account" << endl;
+    cout << "3. Deposit" << endl;
+    cout << "4. Withdraw" << endl;
+    cout << "5. Transfer Money" << endl;
+    cout << "6. Account Lookup" << endl;
+    cout << "7. Account with Least Money using minHeap" << endl;
+    cout << "8. Account with Most Money using maxHeap" << endl;
+    cout << "9. Top Accounts with Most Money" << endl;
+    cout << "10. Exit System" << endl;
+}
 
+void handleChoice(int c) {
+    switch (c) {
+        case 1: {
+            accountCreate();
+            break;
+        }
+        case 2: {
+            cout << "Deleted Account" << endl;
+            break;
+        }
+        case 3: {
+            int accountID;
+            int depositAmount;
+            cout << "Enter id: " << endl;
+            cin >> accountID;
 
-int mergeSort();
+            cout << "Enter deposit amount: " << endl;
+            cin >> depositAmount;
+
+            deposit(accountID, depositAmount);
+        }
+        case 6: {
+            accountLookup();
+            break;
+        }
+        case 7: {
+            auto [minBal, minID] = minH.viewMin();
+            Account acct = accounts[minID];
+
+            cout << "Account with least money:" << endl;
+            cout << "Account ID: " << acct.getID() << endl;
+            cout << "Balance: $" << minBal << endl << endl;
+            break;
+        }
+        case 8: {
+            auto [maxBal, maxID] = maxH.viewMax();
+            Account acct = accounts[maxID];
+
+            cout << "Account with most money:" << endl;
+            cout << "Account ID: " << acct.getID() << endl;
+            cout << "Balance: $" << maxBal << endl << endl;
+            break;
+        }
+        case 10: {
+            return;
+        }
+
+        default: {
+            cout << "\nERROR: Choose one of the options.\n\n" << endl;
+        }
+
+    }
+}

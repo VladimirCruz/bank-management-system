@@ -87,21 +87,25 @@ class maxHeap {
 
     private:
     vector<pair<double, int>> items; //balance, id
+    unordered_map<int, int> idToIndex;
 
     //TO-DO
     //Transaction class goes here
 
-    void heapifyUp();
+    void heapifyUp(int i);
     void heapifyDown();
     int parent(int i) { return (i - 1) / 2; }
     int left(int i) { return (2 * i) + 1; }
     int right(int i) { return (2 * i) + 2; }
+
+    void swapAndUpdate(int a, int b);
 
     public:
 
     //TO-DO
     void insert(double bal, int id);
     void extractMax();
+    void updateKey(int id, double newBalance);
     pair<double, int> viewMax() const;
 };
 
@@ -109,21 +113,25 @@ class minHeap {
 
     private:
     vector<pair<double, int>> items; //balance, id
+    unordered_map<int, int> idToIndex;
 
     //TO-DO
     //Transaction class goes here
 
-    void heapifyUp();
+    void heapifyUp(int i);
     void heapifyDown();
     int parent(int i) { return (i - 1) / 2; }
     int left(int i) { return (2 * i) + 1; }
     int right(int i) { return (2 * i) + 2; }
+
+    void swapAndUpdate(int a, int b);
 
     public:
 
     //Any user input goes in public. Private is only for things not controlled by user.
     void insert(double bal, int id); //O(logn)
     void extractMin(); //O(logn)
+    void updateKey(int id, double newBalance);
     pair<double, int> viewMin() const; //O(1)
 
 };

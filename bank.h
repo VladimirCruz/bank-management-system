@@ -15,11 +15,11 @@ extern maxHeap maxH;
 //Checks for errors (invalid inputs)
 void error();
 
+//Updates balance after deposit has been made so that heap structure is maintained
+// void updateKey(int accountID, int newBalance);
+
 //Menu for bank manager
 void menu();
-
-//Handles menu choice
-void handleChoice(int c); //, unordered_map<double, Account>& accounts, minHeap& minH, maxHeap& maxH
 
 //Admin can create account
 void accountCreate();
@@ -27,10 +27,10 @@ void accountCreate();
 //Admin can delete account
 void accountDelete();
 
-//Users can deposit money
+//Admin can deposit money
 void deposit();
 
-//Users can withdraw money
+//Admin can withdraw money
 int withdrawal();
 
 //Transfer of money from one account, to another
@@ -44,9 +44,7 @@ void accountReport();
 //Binary search for looking up accounts
 void accountLookup();
 
-
-
-//Helper functions
-int mergeSort();
+//Handles menu choice
+void handleChoice(int c); //, unordered_map<double, Account>& accounts, minHeap& minH, maxHeap& maxH
 
 #endif //BANK_H

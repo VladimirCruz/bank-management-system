@@ -1,6 +1,7 @@
 #include <iostream>
 #include <vector>
 #include <utility>
+#include <unordered_map>
 #include "classes.h"
 using namespace std;
 
@@ -60,13 +61,12 @@ Account::Account(int id,
 
 
 //Maximum Heap functions
-void maxHeap::heapifyUp() {
-    int i = items.size()-1;
+void maxHeap::heapifyUp(int i) {
 
     while(i > 0) {
         int parent = (i-1)/2;
         if(items[i].first > items[parent].first) {
-            swap(items[i], items[parent]);
+            swapAndUpdate(i, parent);
             i = parent;
         } else break;
     }
@@ -89,14 +89,16 @@ void maxHeap::heapifyDown() {
         }
 
         if(largest == i) break;
-        swap(items[i], items[largest]);
+        swapAndUpdate(i, largest);
         i = largest;
     }
 }
 
 void maxHeap::insert(double bal, int id) {
     items.push_back({bal, id});
-    heapifyUp();
+    int i = items.size() -1;
+    idToIndex[id] = i;
+    heapifyUp(i);
 }
 
 void maxHeap::extractMax() {
@@ -108,6 +110,20 @@ void maxHeap::extractMax() {
 
 }
 
+void maxHeap::swapAndUpdate(int a, int b) {
+    swap(items[a], items[b]);
+    idToIndex[items[a].second] = a;
+    idToIndex[items[b].second] = b;
+}
+
+void maxHeap::updateKey(int id, double newBalance) {
+    int i = idToIndex[id]; //idToIndex literally means "id leads to index"
+    items[i].first = newBalance; //key of items[i] is now equal to the new balance
+    heapifyUp(i);
+    heapifyDown();
+}
+
+
 pair<double, int> maxHeap::viewMax() const {
     return items[0];
 }
@@ -115,13 +131,12 @@ pair<double, int> maxHeap::viewMax() const {
 
 
 //Minimum Heap functions
-void minHeap::heapifyUp() {
-    int i = items.size() - 1;
+void minHeap::heapifyUp(int i) {
 
     while(i > 0) {
         int parent = (i - 1) / 2;
         if(items[i] < items[parent]) {
-            swap(items[i], items[parent]);
+            swapAndUpdate(i, parent);
             //Advance up
             i = parent;
         } else break;
@@ -147,7 +162,7 @@ void minHeap::heapifyDown() {
 
         //If smallest is not i, then keep doing loop. Otherwise if it is, then the heap structure is satisfied
         if(smallest != i) {
-            swap(items[i], items[smallest]);
+            swapAndUpdate(i, smallest);
             i = smallest;
         } else break;
     }
@@ -155,7 +170,9 @@ void minHeap::heapifyDown() {
 
 void minHeap::insert(double bal, int id) {
     items.push_back({bal, id});
-    heapifyUp();
+    int i = items.size() - 1;
+    idToIndex[id] = i;
+    heapifyUp(i);
 }
 
 void minHeap::extractMin() {
@@ -163,6 +180,19 @@ void minHeap::extractMin() {
 
     swap(items[0], items[i]);
     items.pop_back();
+    heapifyDown();
+}
+
+void minHeap::swapAndUpdate(int a, int b) {
+    swap(items[a], items[b]);
+    idToIndex[items[a].second] = a;
+    idToIndex[items[b].second] = b;
+}
+
+void minHeap::updateKey(int id, double newBalance) {
+    int i = idToIndex[id];
+    items[i].first = newBalance;
+    heapifyUp(i);
     heapifyDown();
 }
 
