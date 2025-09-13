@@ -63,6 +63,8 @@ void accountDelete() {
     swap(minH[0], minH[id]);
     swap(maxH[0], maxH[id]);
 
+    minH.pop_back();
+    maxH.pop_back();
 
 }
 */
@@ -83,6 +85,7 @@ void deposit(int accountID, double depositAmount) {
     Account& acct = it->second; //we want iterator to point to balance amount
     double oldBalance = acct.getBalance();
     double newBalance = oldBalance + depositAmount;
+    acct.setBalance(newBalance);
 
     //updateKey updates the balances so that minHeap and maxHeap are accurate
     maxH.updateKey(accountID, newBalance);
@@ -94,7 +97,33 @@ void deposit(int accountID, double depositAmount) {
     cout << "Your current balance is: $" << newBalance << endl;
 }
 
-int withdrawal();
+void withdrawal(int accountID, int withdrawAmount) {
+    auto it = accounts.find(accountID);
+
+    if(it == accounts.end()) {
+        cout << "Account not found" << endl;
+        return;
+    }
+
+    Account& acct = it->second; //Want balance so point to second
+    double oldBalance = acct.getBalance();
+    double newBalance = oldBalance - withdrawAmount;
+    acct.setBalance(newBalance);
+
+    if(withdrawAmount <= 0 || withdrawAmount > oldBalance) {
+        cout << "Withdraw amount must be a valid amount." << endl;
+        return;
+    }
+
+    //Update heaps accordingly
+    maxH.updateKey(accountID, newBalance);
+    minH.updateKey(accountID, newBalance);
+
+    time_t now = time(nullptr);
+
+    cout << "A withdraw was made to your account." << ctime(&now) << endl;
+    cout << "Your current balance is: $" << newBalance << endl;
+}
 
 /*
 int moneyTransfer(int accountNum, double amount) { //double amount
@@ -142,12 +171,12 @@ void menu() {
     cout << "2. Delete Account" << endl;
     cout << "3. Deposit" << endl;
     cout << "4. Withdraw" << endl;
-    cout << "5. Transfer Money" << endl;
-    cout << "6. Account Lookup" << endl;
-    cout << "7. Account with Least Money using minHeap" << endl;
-    cout << "8. Account with Most Money using maxHeap" << endl;
-    cout << "9. Top Accounts with Most Money" << endl;
-    cout << "10. Exit System" << endl;
+    cout << "5. Account Lookup" << endl;
+    cout << "6. Account with Least Money using minHeap" << endl;
+    cout << "7. Account with Most Money using maxHeap" << endl;
+    //cout << "8. Top Accounts with Most Money" << endl;
+    //Top Accounts with Least Money wouldn't be useful to the bank so don't include
+    cout << "8. Exit System" << endl;
 }
 
 void handleChoice(int c) { //, unordered_map<double, Account>& accounts, minHeap& minH, maxHeap& maxH
@@ -163,19 +192,37 @@ void handleChoice(int c) { //, unordered_map<double, Account>& accounts, minHeap
         case 3: { //deposit
             int accountID;
             int depositAmount;
-            cout << "Enter id: " << endl;
+
+            cout << "Enter ID: ";
             cin >> accountID;
 
-            cout << "Enter deposit amount: " << endl;
+            cout << "\nEnter deposit amount: ";
             cin >> depositAmount;
 
             deposit(accountID, depositAmount);
+            break;
         }
-        case 6: {
+        case 4: {
+            int accountID;
+            int withdrawAmount;
+
+            cout << "Enter ID: ";
+            cin >> accountID;
+
+            const Account& acct = accounts.find(accountID)->second;
+            cout << "Current balance: $" << acct.getBalance() << endl;
+
+            cout << "\nEnter withdraw amount: ";
+            cin >> withdrawAmount;
+
+            withdrawal(accountID, withdrawAmount);
+            break;
+        }
+        case 5: {
             accountLookup();
             break;
         }
-        case 7: {
+        case 6: {
             auto [minBal, minID] = minH.viewMin();
             Account acct = accounts[minID];
 
@@ -184,7 +231,7 @@ void handleChoice(int c) { //, unordered_map<double, Account>& accounts, minHeap
             cout << "Balance: $" << minBal << endl << endl;
             break;
         }
-        case 8: {
+        case 7: {
             auto [maxBal, maxID] = maxH.viewMax();
             Account acct = accounts[maxID];
 
@@ -193,7 +240,7 @@ void handleChoice(int c) { //, unordered_map<double, Account>& accounts, minHeap
             cout << "Balance: $" << maxBal << endl << endl;
             break;
         }
-        case 10: {
+        case 8: {
             return;
         }
 

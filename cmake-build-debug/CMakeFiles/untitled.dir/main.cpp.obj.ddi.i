@@ -59683,7 +59683,7 @@ void accountDelete();
 void deposit();
 
 
-int withdrawal();
+void withdrawal();
 
 
 int moneyTransfer();

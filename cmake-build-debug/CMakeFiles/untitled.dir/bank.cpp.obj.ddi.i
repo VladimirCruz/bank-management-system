@@ -53614,7 +53614,7 @@ void accountDelete();
 void deposit();
 
 
-int withdrawal();
+void withdrawal();
 
 
 int moneyTransfer();
@@ -53677,7 +53677,7 @@ void accountCreate() {
     cout << "\nCreated Account:" << endl;
     cout << ctime(&now) << endl;
 }
-# 70 "C:/Users/thewa/CLionProjects/Bank Management System/bank.cpp"
+# 72 "C:/Users/thewa/CLionProjects/Bank Management System/bank.cpp"
 void deposit(int accountID, double depositAmount) {
 
     auto it = accounts.find(accountID);
@@ -53694,6 +53694,7 @@ void deposit(int accountID, double depositAmount) {
     Account& acct = it->second;
     double oldBalance = acct.getBalance();
     double newBalance = oldBalance + depositAmount;
+    acct.setBalance(newBalance);
 
 
     maxH.updateKey(accountID, newBalance);
@@ -53705,8 +53706,34 @@ void deposit(int accountID, double depositAmount) {
     cout << "Your current balance is: $" << newBalance << endl;
 }
 
-int withdrawal();
-# 113 "C:/Users/thewa/CLionProjects/Bank Management System/bank.cpp"
+void withdrawal(int accountID, int withdrawAmount) {
+    auto it = accounts.find(accountID);
+
+    if(it == accounts.end()) {
+        cout << "Account not found" << endl;
+        return;
+    }
+
+    Account& acct = it->second;
+    double oldBalance = acct.getBalance();
+    double newBalance = oldBalance - withdrawAmount;
+    acct.setBalance(newBalance);
+
+    if(withdrawAmount <= 0 || withdrawAmount > oldBalance) {
+        cout << "Withdraw amount must be a valid amount." << endl;
+        return;
+    }
+
+
+    maxH.updateKey(accountID, newBalance);
+    minH.updateKey(accountID, newBalance);
+
+    time_t now = time(nullptr);
+
+    cout << "A withdraw was made to your account." << ctime(&now) << endl;
+    cout << "Your current balance is: $" << newBalance << endl;
+}
+# 142 "C:/Users/thewa/CLionProjects/Bank Management System/bank.cpp"
 void accountReport();
 
 
@@ -53739,12 +53766,12 @@ void menu() {
     cout << "2. Delete Account" << endl;
     cout << "3. Deposit" << endl;
     cout << "4. Withdraw" << endl;
-    cout << "5. Transfer Money" << endl;
-    cout << "6. Account Lookup" << endl;
-    cout << "7. Account with Least Money using minHeap" << endl;
-    cout << "8. Account with Most Money using maxHeap" << endl;
-    cout << "9. Top Accounts with Most Money" << endl;
-    cout << "10. Exit System" << endl;
+    cout << "5. Account Lookup" << endl;
+    cout << "6. Account with Least Money using minHeap" << endl;
+    cout << "7. Account with Most Money using maxHeap" << endl;
+
+
+    cout << "8. Exit System" << endl;
 }
 
 void handleChoice(int c) {
@@ -53760,19 +53787,37 @@ void handleChoice(int c) {
         case 3: {
             int accountID;
             int depositAmount;
-            cout << "Enter id: " << endl;
+
+            cout << "Enter ID: ";
             cin >> accountID;
 
-            cout << "Enter deposit amount: " << endl;
+            cout << "\nEnter deposit amount: ";
             cin >> depositAmount;
 
             deposit(accountID, depositAmount);
+            break;
         }
-        case 6: {
+        case 4: {
+            int accountID;
+            int withdrawAmount;
+
+            cout << "Enter ID: ";
+            cin >> accountID;
+
+            const Account& acct = accounts.find(accountID)->second;
+            cout << "Current balance: $" << acct.getBalance() << endl;
+
+            cout << "\nEnter withdraw amount: ";
+            cin >> withdrawAmount;
+
+            withdrawal(accountID, withdrawAmount);
+            break;
+        }
+        case 5: {
             accountLookup();
             break;
         }
-        case 7: {
+        case 6: {
             auto [minBal, minID] = minH.viewMin();
             Account acct = accounts[minID];
 
@@ -53781,7 +53826,7 @@ void handleChoice(int c) {
             cout << "Balance: $" << minBal << endl << endl;
             break;
         }
-        case 8: {
+        case 7: {
             auto [maxBal, maxID] = maxH.viewMax();
             Account acct = accounts[maxID];
 
@@ -53790,7 +53835,7 @@ void handleChoice(int c) {
             cout << "Balance: $" << maxBal << endl << endl;
             break;
         }
-        case 10: {
+        case 8: {
             return;
         }
 

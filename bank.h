@@ -31,7 +31,7 @@ void accountDelete();
 void deposit();
 
 //Admin can withdraw money
-int withdrawal();
+void withdrawal();
 
 //Transfer of money from one account, to another
 int moneyTransfer();
