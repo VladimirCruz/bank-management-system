@@ -53505,10 +53505,6 @@ public:
     string setEmail();
     int setPhoneNumber();
 
-
-
-
-
 };
 
 class Transaction {
@@ -53535,7 +53531,7 @@ class maxHeap {
 
 
     void heapifyUp(int i);
-    void heapifyDown();
+    void heapifyDown(int i);
     int parent(int i) { return (i - 1) / 2; }
     int left(int i) { return (2 * i) + 1; }
     int right(int i) { return (2 * i) + 2; }
@@ -53548,6 +53544,8 @@ class maxHeap {
     void insert(double bal, int id);
     void extractMax();
     void updateKey(int id, double newBalance);
+    int getIndex(int id);
+    void removeByID(int id);
     pair<double, int> viewMax() const;
 };
 
@@ -53561,7 +53559,7 @@ class minHeap {
 
 
     void heapifyUp(int i);
-    void heapifyDown();
+    void heapifyDown(int i);
     int parent(int i) { return (i - 1) / 2; }
     int left(int i) { return (2 * i) + 1; }
     int right(int i) { return (2 * i) + 2; }
@@ -53574,6 +53572,8 @@ class minHeap {
     void insert(double bal, int id);
     void extractMin();
     void updateKey(int id, double newBalance);
+    int getIndex(int id);
+    void removeByID(int id);
     pair<double, int> viewMin() const;
 
 };
@@ -53635,10 +53635,7 @@ void maxHeap::heapifyUp(int i) {
     }
 }
 
-void maxHeap::heapifyDown() {
-    if(items.size() < 2) return;
-    int i = 0;
-
+void maxHeap::heapifyDown(int i) {
     while(true) {
         int largest = i;
         int l = left(i);
@@ -53669,7 +53666,7 @@ void maxHeap::extractMax() {
 
     swap(items[0], items[i]);
     items.pop_back();
-    heapifyDown();
+    heapifyDown(0);
 
 }
 
@@ -53683,15 +53680,36 @@ void maxHeap::updateKey(int id, double newBalance) {
     int i = idToIndex[id];
     items[i].first = newBalance;
     heapifyUp(i);
-    heapifyDown();
+    heapifyDown(i);
 }
 
+int maxHeap::getIndex(int id) {
+    return idToIndex[id];
+}
+
+void maxHeap::removeByID(int id) {
+    if(idToIndex.find(id) == idToIndex.end()) return;
+
+    int i = idToIndex[id];
+    int lastItem = items.size() - 1;
+
+    if(i != lastItem) {
+        swap(items[i], items[lastItem]);
+        idToIndex[items[i].second] = i;
+    }
+
+    items.pop_back();
+    idToIndex.erase(id);
+
+    if(i < items.size()) {
+        heapifyUp(i);
+        heapifyDown(i);
+    }
+}
 
 pair<double, int> maxHeap::viewMax() const {
     return items[0];
 }
-
-
 
 
 void minHeap::heapifyUp(int i) {
@@ -53706,11 +53724,8 @@ void minHeap::heapifyUp(int i) {
     }
 }
 
-void minHeap::heapifyDown() {
-    if (items.size() < 2) return;
-    int i = 0;
-
-    while(i < items.size()-1) {
+void minHeap::heapifyDown(int i) {
+    while(i < items.size()) {
 
         int smallest = i;
         int l = left(i);
@@ -53743,7 +53758,7 @@ void minHeap::extractMin() {
 
     swap(items[0], items[i]);
     items.pop_back();
-    heapifyDown();
+    heapifyDown(0);
 }
 
 void minHeap::swapAndUpdate(int a, int b) {
@@ -53756,7 +53771,30 @@ void minHeap::updateKey(int id, double newBalance) {
     int i = idToIndex[id];
     items[i].first = newBalance;
     heapifyUp(i);
-    heapifyDown();
+    heapifyDown(i);
+}
+
+int minHeap::getIndex(int id) {
+    return idToIndex[id];
+}
+
+void minHeap::removeByID(int id) {
+    if(idToIndex.find(id)== idToIndex.end()) return;
+    int i = idToIndex[id];
+    int lastItem = items.size() - 1;
+
+    if(i != lastItem) {
+        swap(items[i], items[lastItem]);
+        idToIndex[items[i].second] = i;
+    }
+
+    items.pop_back();
+    idToIndex.erase(id);
+
+    if(i < items.size()) {
+        heapifyUp(i);
+        heapifyDown(i);
+    }
 }
 
 pair<double, int> minHeap::viewMin() const {

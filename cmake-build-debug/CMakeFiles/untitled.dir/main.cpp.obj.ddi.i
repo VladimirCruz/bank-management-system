@@ -59583,10 +59583,6 @@ public:
     string setEmail();
     int setPhoneNumber();
 
-
-
-
-
 };
 
 class Transaction {
@@ -59613,7 +59609,7 @@ class maxHeap {
 
 
     void heapifyUp(int i);
-    void heapifyDown();
+    void heapifyDown(int i);
     int parent(int i) { return (i - 1) / 2; }
     int left(int i) { return (2 * i) + 1; }
     int right(int i) { return (2 * i) + 2; }
@@ -59626,6 +59622,8 @@ class maxHeap {
     void insert(double bal, int id);
     void extractMax();
     void updateKey(int id, double newBalance);
+    int getIndex(int id);
+    void removeByID(int id);
     pair<double, int> viewMax() const;
 };
 
@@ -59639,7 +59637,7 @@ class minHeap {
 
 
     void heapifyUp(int i);
-    void heapifyDown();
+    void heapifyDown(int i);
     int parent(int i) { return (i - 1) / 2; }
     int left(int i) { return (2 * i) + 1; }
     int right(int i) { return (2 * i) + 2; }
@@ -59652,6 +59650,8 @@ class minHeap {
     void insert(double bal, int id);
     void extractMin();
     void updateKey(int id, double newBalance);
+    int getIndex(int id);
+    void removeByID(int id);
     pair<double, int> viewMin() const;
 
 };

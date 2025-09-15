@@ -50,24 +50,18 @@ void accountCreate() {
     cout << ctime(&now) << endl;
 }
 
-/*
-void accountDelete() {
-    int id;
-    cout << "Enter Account ID: " << endl;
-    cin >> id;
-
-    if(accounts.find(id) != accounts.end()) {
-
+void accountDelete(int accountID) {
+    if(accounts.find(accountID) == accounts.end()) {
+        cout << "Account was not found." << endl;
+        return;
     }
 
-    swap(minH[0], minH[id]);
-    swap(maxH[0], maxH[id]);
+    minH.removeByID(accountID);
+    maxH.removeByID(accountID);
+    accounts.erase(accountID);
 
-    minH.pop_back();
-    maxH.pop_back();
-
+    cout << "Account " << accountID << " successfully deleted." << endl;;
 }
-*/
 
 void deposit(int accountID, double depositAmount) {
 
@@ -186,7 +180,11 @@ void handleChoice(int c) { //, unordered_map<double, Account>& accounts, minHeap
             break;
         }
         case 2: {
-            cout << "Deleted Account" << endl;
+            int accountID;
+            cout << "Enter ID:" << endl;
+            cin >> accountID;
+
+            accountDelete(accountID);
             break;
         }
         case 3: { //deposit

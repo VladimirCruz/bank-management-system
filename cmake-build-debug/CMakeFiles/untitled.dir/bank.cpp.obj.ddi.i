@@ -53515,10 +53515,6 @@ public:
     string setEmail();
     int setPhoneNumber();
 
-
-
-
-
 };
 
 class Transaction {
@@ -53545,7 +53541,7 @@ class maxHeap {
 
 
     void heapifyUp(int i);
-    void heapifyDown();
+    void heapifyDown(int i);
     int parent(int i) { return (i - 1) / 2; }
     int left(int i) { return (2 * i) + 1; }
     int right(int i) { return (2 * i) + 2; }
@@ -53558,6 +53554,8 @@ class maxHeap {
     void insert(double bal, int id);
     void extractMax();
     void updateKey(int id, double newBalance);
+    int getIndex(int id);
+    void removeByID(int id);
     pair<double, int> viewMax() const;
 };
 
@@ -53571,7 +53569,7 @@ class minHeap {
 
 
     void heapifyUp(int i);
-    void heapifyDown();
+    void heapifyDown(int i);
     int parent(int i) { return (i - 1) / 2; }
     int left(int i) { return (2 * i) + 1; }
     int right(int i) { return (2 * i) + 2; }
@@ -53584,6 +53582,8 @@ class minHeap {
     void insert(double bal, int id);
     void extractMin();
     void updateKey(int id, double newBalance);
+    int getIndex(int id);
+    void removeByID(int id);
     pair<double, int> viewMin() const;
 
 };
@@ -53677,7 +53677,20 @@ void accountCreate() {
     cout << "\nCreated Account:" << endl;
     cout << ctime(&now) << endl;
 }
-# 72 "C:/Users/thewa/CLionProjects/Bank Management System/bank.cpp"
+
+void accountDelete(int accountID) {
+    if(accounts.find(accountID) == accounts.end()) {
+        cout << "Account was not found." << endl;
+        return;
+    }
+
+    minH.removeByID(accountID);
+    maxH.removeByID(accountID);
+    accounts.erase(accountID);
+
+    cout << "Account " << accountID << " successfully deleted." << endl;;
+}
+
 void deposit(int accountID, double depositAmount) {
 
     auto it = accounts.find(accountID);
@@ -53733,7 +53746,7 @@ void withdrawal(int accountID, int withdrawAmount) {
     cout << "A withdraw was made to your account." << ctime(&now) << endl;
     cout << "Your current balance is: $" << newBalance << endl;
 }
-# 142 "C:/Users/thewa/CLionProjects/Bank Management System/bank.cpp"
+# 136 "C:/Users/thewa/CLionProjects/Bank Management System/bank.cpp"
 void accountReport();
 
 
@@ -53781,7 +53794,11 @@ void handleChoice(int c) {
             break;
         }
         case 2: {
-            cout << "Deleted Account" << endl;
+            int accountID;
+            cout << "Enter ID:" << endl;
+            cin >> accountID;
+
+            accountDelete(accountID);
             break;
         }
         case 3: {
