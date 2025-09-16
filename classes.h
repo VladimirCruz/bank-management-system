@@ -65,20 +65,6 @@ public:
 
 };
 
-class Transaction {
-    int id;
-    time_t timestamp;
-    double account;
-    int fromAccount;
-    int toAccount;
-    string description; //Reason for sending money
-
-    //TO-DO
-    public:
-    Transaction(int id, std::time_t timestamp, double account, int toAccount, string description);
-
-};
-
 class maxHeap {
 
     private:

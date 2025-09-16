@@ -49,17 +49,6 @@ Account::Account(int id,
                 balance(balance)
 {}
 
-
-
-
-//Customer goes here
-
-
-
-//Transaction goes here
-
-
-
 //Maximum Heap functions
 void maxHeap::heapifyUp(int i) {
 
