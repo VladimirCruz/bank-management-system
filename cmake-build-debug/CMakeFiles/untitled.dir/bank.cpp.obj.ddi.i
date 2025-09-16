@@ -53729,13 +53729,14 @@ void withdrawal(int accountID, int withdrawAmount) {
 
     Account& acct = it->second;
     double oldBalance = acct.getBalance();
-    double newBalance = oldBalance - withdrawAmount;
-    acct.setBalance(newBalance);
 
     if(withdrawAmount <= 0 || withdrawAmount > oldBalance) {
         cout << "Withdraw amount must be a valid amount." << endl;
         return;
     }
+
+    double newBalance = oldBalance - withdrawAmount;
+    acct.setBalance(newBalance);
 
 
     maxH.updateKey(accountID, newBalance);
@@ -53746,7 +53747,7 @@ void withdrawal(int accountID, int withdrawAmount) {
     cout << "A withdraw was made to your account." << ctime(&now) << endl;
     cout << "Your current balance is: $" << newBalance << endl;
 }
-# 136 "C:/Users/thewa/CLionProjects/Bank Management System/bank.cpp"
+# 137 "C:/Users/thewa/CLionProjects/Bank Management System/bank.cpp"
 void accountReport();
 
 

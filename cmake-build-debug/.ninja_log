@@ -1,63 +1,45 @@
 # ninja log v6
-101	1003	7796072468816387	CMakeFiles/untitled.dir/classes.cpp.obj.ddi	75b5c72bc672ba8
-18	880	7796073773746215	CMakeFiles/untitled.dir/bank.cpp.obj.ddi	ac00bc1ab121fb06
-58	1059	7796072468378794	CMakeFiles/untitled.dir/main.cpp.obj.ddi	c54e681f179f74dc
-880	1007	7796073782362166	CMakeFiles/untitled.dir/CXX.dd	30ad0acb08d294f8
-880	1007	7796073782362166	C:/Users/thewa/CLionProjects/Bank Management System/cmake-build-debug/CMakeFiles/untitled.dir/CXXModules.json	30ad0acb08d294f8
-880	1007	7796073782362166	CMakeFiles/untitled.dir/bank.cpp.obj.modmap	30ad0acb08d294f8
-880	1007	7796073782362166	CMakeFiles/untitled.dir/main.cpp.obj.modmap	30ad0acb08d294f8
-880	1007	7796073782362166	CMakeFiles/untitled.dir/classes.cpp.obj.modmap	30ad0acb08d294f8
-1183	3468	7796072479633933	CMakeFiles/untitled.dir/main.cpp.obj	f3206c9635f1136b
-637	2546	7794860846136784	CMakeFiles/untitled.dir/classes.cpp.obj	f14986725006b4ef
-997	3010	7795045628904049	CMakeFiles/untitled.dir/bank.cpp.obj	a160634363405105
-3010	3282	7795045649034075	untitled.exe	f7a6e5ec1dcbfcc6
-19	923	7796074064327821	CMakeFiles/untitled.dir/main.cpp.obj.ddi	c54e681f179f74dc
-36	933	7796074064498230	CMakeFiles/untitled.dir/bank.cpp.obj.ddi	ac00bc1ab121fb06
-59	951	7796074064728089	CMakeFiles/untitled.dir/classes.cpp.obj.ddi	75b5c72bc672ba8
-951	1062	7796074073653349	CMakeFiles/untitled.dir/CXX.dd	30ad0acb08d294f8
-951	1062	7796074073653349	C:/Users/thewa/CLionProjects/Bank Management System/cmake-build-debug/CMakeFiles/untitled.dir/CXXModules.json	30ad0acb08d294f8
-951	1062	7796074073653349	CMakeFiles/untitled.dir/main.cpp.obj.modmap	30ad0acb08d294f8
-951	1062	7796074073653349	CMakeFiles/untitled.dir/bank.cpp.obj.modmap	30ad0acb08d294f8
-951	1062	7796074073653349	CMakeFiles/untitled.dir/classes.cpp.obj.modmap	30ad0acb08d294f8
-1063	3286	7796074074771053	CMakeFiles/untitled.dir/main.cpp.obj	f3206c9635f1136b
-19	833	7796074857818371	CMakeFiles/untitled.dir/classes.cpp.obj.ddi	75b5c72bc672ba8
-834	947	7796074865973766	CMakeFiles/untitled.dir/CXX.dd	30ad0acb08d294f8
-834	947	7796074865973766	C:/Users/thewa/CLionProjects/Bank Management System/cmake-build-debug/CMakeFiles/untitled.dir/CXXModules.json	30ad0acb08d294f8
-834	947	7796074865973766	CMakeFiles/untitled.dir/main.cpp.obj.modmap	30ad0acb08d294f8
-834	947	7796074865973766	CMakeFiles/untitled.dir/bank.cpp.obj.modmap	30ad0acb08d294f8
-834	947	7796074865973766	CMakeFiles/untitled.dir/classes.cpp.obj.modmap	30ad0acb08d294f8
-18	929	7796075486737598	CMakeFiles/untitled.dir/classes.cpp.obj.ddi	75b5c72bc672ba8
-929	1040	7796075495853895	CMakeFiles/untitled.dir/CXX.dd	30ad0acb08d294f8
-929	1040	7796075495853895	C:/Users/thewa/CLionProjects/Bank Management System/cmake-build-debug/CMakeFiles/untitled.dir/CXXModules.json	30ad0acb08d294f8
-929	1040	7796075495853895	CMakeFiles/untitled.dir/main.cpp.obj.modmap	30ad0acb08d294f8
-929	1040	7796075495853895	CMakeFiles/untitled.dir/bank.cpp.obj.modmap	30ad0acb08d294f8
-929	1040	7796075495853895	CMakeFiles/untitled.dir/classes.cpp.obj.modmap	30ad0acb08d294f8
-40	989	7796075707876335	CMakeFiles/untitled.dir/bank.cpp.obj.ddi	ac00bc1ab121fb06
-21	991	7796075707688522	CMakeFiles/untitled.dir/main.cpp.obj.ddi	c54e681f179f74dc
-60	1003	7796075708073346	CMakeFiles/untitled.dir/classes.cpp.obj.ddi	75b5c72bc672ba8
-1004	1123	7796075717518547	CMakeFiles/untitled.dir/CXX.dd	30ad0acb08d294f8
-1004	1123	7796075717518547	C:/Users/thewa/CLionProjects/Bank Management System/cmake-build-debug/CMakeFiles/untitled.dir/CXXModules.json	30ad0acb08d294f8
-1004	1123	7796075717518547	CMakeFiles/untitled.dir/main.cpp.obj.modmap	30ad0acb08d294f8
-1004	1123	7796075717518547	CMakeFiles/untitled.dir/bank.cpp.obj.modmap	30ad0acb08d294f8
-1004	1123	7796075717518547	CMakeFiles/untitled.dir/classes.cpp.obj.modmap	30ad0acb08d294f8
-1125	3353	7796075718729234	CMakeFiles/untitled.dir/main.cpp.obj	f3206c9635f1136b
-38	905	7796077037597926	CMakeFiles/untitled.dir/bank.cpp.obj.ddi	ac00bc1ab121fb06
-19	955	7796077037412892	CMakeFiles/untitled.dir/main.cpp.obj.ddi	c54e681f179f74dc
-55	956	7796077037774256	CMakeFiles/untitled.dir/classes.cpp.obj.ddi	75b5c72bc672ba8
-956	1068	7796077046781869	CMakeFiles/untitled.dir/CXX.dd	30ad0acb08d294f8
-956	1068	7796077046781869	C:/Users/thewa/CLionProjects/Bank Management System/cmake-build-debug/CMakeFiles/untitled.dir/CXXModules.json	30ad0acb08d294f8
-956	1068	7796077046781869	CMakeFiles/untitled.dir/main.cpp.obj.modmap	30ad0acb08d294f8
-956	1068	7796077046781869	CMakeFiles/untitled.dir/bank.cpp.obj.modmap	30ad0acb08d294f8
-956	1068	7796077046781869	CMakeFiles/untitled.dir/classes.cpp.obj.modmap	30ad0acb08d294f8
-1069	3458	7796077047912094	CMakeFiles/untitled.dir/main.cpp.obj	f3206c9635f1136b
-1103	3554	7796077048243716	CMakeFiles/untitled.dir/classes.cpp.obj	f14986725006b4ef
-1086	3624	7796077048076288	CMakeFiles/untitled.dir/bank.cpp.obj	a160634363405105
-3625	3962	7796077073465594	untitled.exe	f7a6e5ec1dcbfcc6
 17	837	7796079235262052	CMakeFiles/untitled.dir/classes.cpp.obj.ddi	75b5c72bc672ba8
-837	947	7796079243475582	CMakeFiles/untitled.dir/CXX.dd	30ad0acb08d294f8
-837	947	7796079243475582	C:/Users/thewa/CLionProjects/Bank Management System/cmake-build-debug/CMakeFiles/untitled.dir/CXXModules.json	30ad0acb08d294f8
-837	947	7796079243475582	CMakeFiles/untitled.dir/main.cpp.obj.modmap	30ad0acb08d294f8
-837	947	7796079243475582	CMakeFiles/untitled.dir/bank.cpp.obj.modmap	30ad0acb08d294f8
-837	947	7796079243475582	CMakeFiles/untitled.dir/classes.cpp.obj.modmap	30ad0acb08d294f8
+38	905	7796077037597926	CMakeFiles/untitled.dir/bank.cpp.obj.ddi	ac00bc1ab121fb06
+889	1009	7796809204465075	CMakeFiles/untitled.dir/CXX.dd	30ad0acb08d294f8
+19	889	7796809195754538	CMakeFiles/untitled.dir/main.cpp.obj.ddi	c54e681f179f74dc
+889	1009	7796809204465075	C:/Users/thewa/CLionProjects/Bank Management System/cmake-build-debug/CMakeFiles/untitled.dir/CXXModules.json	30ad0acb08d294f8
+889	1009	7796809204465075	CMakeFiles/untitled.dir/bank.cpp.obj.modmap	30ad0acb08d294f8
+889	1009	7796809204465075	CMakeFiles/untitled.dir/main.cpp.obj.modmap	30ad0acb08d294f8
+889	1009	7796809204465075	CMakeFiles/untitled.dir/classes.cpp.obj.modmap	30ad0acb08d294f8
+1011	3075	7796809205677253	CMakeFiles/untitled.dir/main.cpp.obj	f3206c9635f1136b
 949	3095	7796079244584608	CMakeFiles/untitled.dir/classes.cpp.obj	f14986725006b4ef
-3096	3413	7796079266064299	untitled.exe	f7a6e5ec1dcbfcc6
+1086	3624	7796077048076288	CMakeFiles/untitled.dir/bank.cpp.obj	a160634363405105
+3075	3387	7796809226324746	untitled.exe	f7a6e5ec1dcbfcc6
+19	936	7796810006054198	CMakeFiles/untitled.dir/main.cpp.obj.ddi	c54e681f179f74dc
+937	1061	7796810015234616	CMakeFiles/untitled.dir/CXX.dd	30ad0acb08d294f8
+937	1061	7796810015234616	C:/Users/thewa/CLionProjects/Bank Management System/cmake-build-debug/CMakeFiles/untitled.dir/CXXModules.json	30ad0acb08d294f8
+937	1061	7796810015234616	CMakeFiles/untitled.dir/main.cpp.obj.modmap	30ad0acb08d294f8
+937	1061	7796810015234616	CMakeFiles/untitled.dir/bank.cpp.obj.modmap	30ad0acb08d294f8
+937	1061	7796810015234616	CMakeFiles/untitled.dir/classes.cpp.obj.modmap	30ad0acb08d294f8
+1063	3114	7796810016490822	CMakeFiles/untitled.dir/main.cpp.obj	f3206c9635f1136b
+3115	3423	7796810037007780	untitled.exe	f7a6e5ec1dcbfcc6
+19	1045	7796811414874819	CMakeFiles/untitled.dir/main.cpp.obj.ddi	c54e681f179f74dc
+1046	1185	7796811425137413	CMakeFiles/untitled.dir/CXX.dd	30ad0acb08d294f8
+1046	1185	7796811425137413	C:/Users/thewa/CLionProjects/Bank Management System/cmake-build-debug/CMakeFiles/untitled.dir/CXXModules.json	30ad0acb08d294f8
+1046	1185	7796811425137413	CMakeFiles/untitled.dir/main.cpp.obj.modmap	30ad0acb08d294f8
+1046	1185	7796811425137413	CMakeFiles/untitled.dir/bank.cpp.obj.modmap	30ad0acb08d294f8
+1046	1185	7796811425137413	CMakeFiles/untitled.dir/classes.cpp.obj.modmap	30ad0acb08d294f8
+1187	3547	7796811426560117	CMakeFiles/untitled.dir/main.cpp.obj	f3206c9635f1136b
+3548	3893	7796811450159044	untitled.exe	f7a6e5ec1dcbfcc6
+19	911	7796815708688845	CMakeFiles/untitled.dir/bank.cpp.obj.ddi	ac00bc1ab121fb06
+912	1042	7796815717609884	CMakeFiles/untitled.dir/CXX.dd	30ad0acb08d294f8
+912	1042	7796815717609884	C:/Users/thewa/CLionProjects/Bank Management System/cmake-build-debug/CMakeFiles/untitled.dir/CXXModules.json	30ad0acb08d294f8
+912	1042	7796815717609884	CMakeFiles/untitled.dir/main.cpp.obj.modmap	30ad0acb08d294f8
+912	1042	7796815717609884	CMakeFiles/untitled.dir/bank.cpp.obj.modmap	30ad0acb08d294f8
+912	1042	7796815717609884	CMakeFiles/untitled.dir/classes.cpp.obj.modmap	30ad0acb08d294f8
+1043	3342	7796815718924333	CMakeFiles/untitled.dir/bank.cpp.obj	a160634363405105
+3343	3656	7796815741920590	untitled.exe	f7a6e5ec1dcbfcc6
+20	917	7796815837066656	CMakeFiles/untitled.dir/main.cpp.obj.ddi	c54e681f179f74dc
+917	1028	7796815846036633	CMakeFiles/untitled.dir/CXX.dd	30ad0acb08d294f8
+917	1028	7796815846036633	C:/Users/thewa/CLionProjects/Bank Management System/cmake-build-debug/CMakeFiles/untitled.dir/CXXModules.json	30ad0acb08d294f8
+917	1028	7796815846036633	CMakeFiles/untitled.dir/main.cpp.obj.modmap	30ad0acb08d294f8
+917	1028	7796815846036633	CMakeFiles/untitled.dir/bank.cpp.obj.modmap	30ad0acb08d294f8
+917	1028	7796815846036633	CMakeFiles/untitled.dir/classes.cpp.obj.modmap	30ad0acb08d294f8
+1029	3287	7796815847152139	CMakeFiles/untitled.dir/main.cpp.obj	f3206c9635f1136b
+3287	3606	7796815869733191	untitled.exe	f7a6e5ec1dcbfcc6

@@ -101,13 +101,14 @@ void withdrawal(int accountID, int withdrawAmount) {
 
     Account& acct = it->second; //Want balance so point to second
     double oldBalance = acct.getBalance();
-    double newBalance = oldBalance - withdrawAmount;
-    acct.setBalance(newBalance);
 
     if(withdrawAmount <= 0 || withdrawAmount > oldBalance) {
         cout << "Withdraw amount must be a valid amount." << endl;
         return;
     }
+
+    double newBalance = oldBalance - withdrawAmount;
+    acct.setBalance(newBalance);
 
     //Update heaps accordingly
     maxH.updateKey(accountID, newBalance);
